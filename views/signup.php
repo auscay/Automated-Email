@@ -17,9 +17,10 @@
         <input type="password" placeholder="Enter Password" name="password" required>
         <br><br>
         <label for="password_repeat"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Confirm Password" name="password_repeat">
+        <input type="password" placeholder="Confirm Password" name="password_repeat" required>
         <br><br>
         <button type="submit" name="submit">Signup</button>
     </form>
+    <p>Have an account already? <a href="../views/login.php">Login</a></p>
 </body>
 </html>
