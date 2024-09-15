@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
 
     // Running Error Handlers and Logging in the user
     $login->loginUser();
-
-    // If successful, this will redirect to dashboard or another page
+    
+    // Redirect to dashboard
+    header("Location: ../views/dashboard.php?login=success");
 }

@@ -19,11 +19,11 @@ class Login extends Dbh {
             exit();
         }
 
-        // Fetch hashed password from database
-        $pwdHashed = $stmt->fetch(PDO::FETCH_ASSOC)['users_password'];
+        // Fetch the user details (including hashed password)
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Verify password
-        $checkPwd = password_verify($password, $pwdHashed);
+        // Verify the password using password_verify
+        $checkPwd = password_verify($password, $user['users_password']);
 
         if ($checkPwd === false) {
             $stmt = null;
@@ -31,8 +31,13 @@ class Login extends Dbh {
             exit();
         } elseif ($checkPwd === true) {
             // Password matches, login successful
+            // Start session and set session variables
+            session_start();
+            $_SESSION['user'] = $user['users_username'];  // Store username in session
+            $_SESSION['logged_in'] = true;
+            
+            // Clear statement
             $stmt = null;
-            return true;
         }
     }
 

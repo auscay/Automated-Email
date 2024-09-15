@@ -18,10 +18,6 @@ class LoginContr extends Login {
 
         // Check if user exists and log them in
         $this->getUser($this->usernameOrEmail, $this->password);
-        
-        // Redirect to dashboard (or wherever after successful login)
-        header("Location: ../views/dashboard.php?login=success");
-        exit();
     }
 
     // Error Handler - Check for empty inputs
