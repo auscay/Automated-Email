@@ -33,7 +33,7 @@ class EmailSender extends Email {
                     $mail->Port       = $_ENV['MAIL_PORT'];                                      // SMTP port to connect to
 
                     // Recipients
-                    $mail->setFrom('automatedmail.com', 'Automated Mail');
+                    $mail->setFrom('test@surreyinheritance.com', 'Your Name');
                     $mail->addAddress($email['recipient_email']);                 // Add recipient
 
                     // Content
