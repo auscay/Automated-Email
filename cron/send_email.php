@@ -25,15 +25,15 @@ class EmailSender extends Email {
                 try {
                     // Server settings
                     $mail->isSMTP();                                             // Set mailer to use SMTP
-                    $mail->Host       = 'mail.surreyinheritance.com';                       // Specify SMTP server (e.g., smtp.gmail.com)
+                    $mail->Host       = $_ENV['MAIL_HOST'];                       // Specify SMTP server (e.g., smtp.gmail.com)
                     $mail->SMTPAuth   = true;                                    // Enable SMTP authentication
-                    $mail->Username   = 'test@surreyinheritance.com';                 // SMTP username
-                    $mail->Password   = 'Rickross99$$$$';                    // SMTP password
+                    $mail->Username   = $_ENV['MAIL_USERNAME'];                 // SMTP username
+                    $mail->Password   = $_ENV['MAIL_PASSWORD'];                    // SMTP password
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;           // Enable SMTP encryption
-                    $mail->Port       = 465;                                      // SMTP port to connect to
+                    $mail->Port       = $_ENV['MAIL_PORT'];                                      // SMTP port to connect to
 
                     // Recipients
-                    $mail->setFrom('test@surreyinheritance.com', 'Your Name');
+                    $mail->setFrom('automatedmail.com', 'Automated Mail');
                     $mail->addAddress($email['recipient_email']);                 // Add recipient
 
                     // Content

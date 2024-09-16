@@ -1,18 +1,17 @@
 <?php
 
-class Dbh {
+include "../config.php";
 
-    // Database connection
+
+class Dbh {
     protected function connect() {
+        $dsn = "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'];
         try {
-            $username = "root";
-            $password = "rickross99$$";
-            $dbh = new PDO('mysql:host=localhost;dbname=automated_email', $username, $password);
-            // echo "Database success!";
-            return $dbh;
+            $pdo = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
         } catch (PDOException $e) {
-            print "Error!: " . $e->getMessage() . "<br>";
-            die();
+            throw new Exception("Connection failed: " . $e->getMessage());
         }
     }
 }

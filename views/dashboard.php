@@ -60,7 +60,7 @@ $emails = $emailController->fetchScheduledEmails();
         </table>
     <?php endif; ?>
 
-    <a href="schedule-email.php">Schedule a New Email</a>
+    <a href="schedule_email.php">Schedule a New Email</a>
 
         <br><br>
         <form action="../includes/logout.inc.php" method="POST">
