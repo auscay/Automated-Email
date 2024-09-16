@@ -33,9 +33,9 @@ class Login extends Dbh {
             // Password matches, login successful
             // Start session and set session variables
             session_start();
-            $_SESSION['user'] = $user['users_username'];  // Store username in session
+            $_SESSION['user'] = $usernameOrEmail;  // Store username in session
             $_SESSION['logged_in'] = true;
-            
+
             // Clear statement
             $stmt = null;
         }

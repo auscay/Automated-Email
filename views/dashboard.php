@@ -3,9 +3,21 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: login.php");  // Redirect to login page if not logged in
+    header("Location: ../views/login.php");
     exit();
 }
+
+// Include necessary files
+include "../config/db.php";
+include "../models/schedule_email-model.php";
+include "../controllers/schedule_email-contr.php";
+
+// // Instantiate the controller
+$emailController = new EmailContr(null, null, null, null); // No need to pass arguments for fetching emails
+
+// Fetch scheduled emails
+$emails = $emailController->fetchScheduledEmails();
+
 
 ?>
 
@@ -15,40 +27,40 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to Your Dashboard, <?php echo $_SESSION['user']; ?>!</h1>
-    </header>
 
-    <section>
-        <h2>Manage Your Scheduled Emails</h2>
-        <p>Here you can view, edit, or delete your scheduled email notifications.</p>
+    <h1>Welcome to the Dashboard</h1>
+    <p>Hello, <?php echo $_SESSION['user']; ?>!</p>
 
-        <!-- Add dashboard content such as list of scheduled emails -->
+    <h2>Scheduled Emails</h2>
+
+    <?php if (empty($emails)): ?>
+        <p>No emails scheduled yet.</p>
+    <?php else: ?>
         <table>
             <tr>
-                <th>Email Recipient</th>
+                <th>Recipient Email</th>
                 <th>Subject</th>
+                <th>Body</th>
                 <th>Scheduled Time</th>
                 <th>Status</th>
-                <th>Actions</th>
+                <th>Attempts</th>
             </tr>
-            <tr>
-                <td>example@example.com</td>
-                <td>Subject of the email</td>
-                <td>2024-09-20 10:30 AM</td>
-                <td>Pending</td>
-                <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </td>
-            </tr>
-            <!-- More email notifications here -->
+            <?php foreach ($emails as $email): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($email['recipient_email']); ?></td>
+                    <td><?php echo htmlspecialchars($email['subject']); ?></td>
+                    <td><?php echo htmlspecialchars($email['body']); ?></td>
+                    <td><?php echo htmlspecialchars($email['scheduled_time']); ?></td>
+                    <td><?php echo htmlspecialchars($email['status']); ?></td>
+                    <td><?php echo htmlspecialchars($email['attempts']); ?></td>
+                </tr>
+            <?php endforeach; ?>
         </table>
+    <?php endif; ?>
 
-        <a href="schedule-email.php">Schedule a New Email</a>
+    <a href="schedule-email.php">Schedule a New Email</a>
 
         <br><br>
         <form action="../includes/logout.inc.php" method="POST">
