@@ -34,4 +34,5 @@ cd email-scheduling-app
 
 ```bash
 composer install
-
+```
+#### This will install PHPMailer and other dependencies.
