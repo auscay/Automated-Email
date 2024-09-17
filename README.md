@@ -177,16 +177,16 @@ project-root/
 ```
 
 ## Future Enhancements
-- **Automated Sending:** Backend language
+- Add functionality for recurring email schedules.
+- Implement a more robust error logging mechanism.
+- Implement email templates for better customization.
+
+## Technologies Used
+- **PHP:** Backend language
 - **MySQL:** Database to store users and email schedules
 - **PHPMailer:** To handle email sending
 - **Composer:** PHP dependency management
 - **Dotenv:** For managing environment variable
-
-## Technologies Used
-- Add functionality for recurring email schedules.
-- Implement a more robust error logging mechanism.
-- Implement email templates for better customization.
 
 ## Contributions
 Contributions are welcome! Feel free to submit a pull request or open an issue.
