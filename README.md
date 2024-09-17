@@ -27,4 +27,11 @@ Before running the project, make sure you have the following installed:
 git clone https://github.com/yourusername/email-scheduling-app.git
 cd email-scheduling-app
 
+```
 ### 2. Install Dependencies
+
+#### Make sure you have Composer installed, then run:
+
+```bash
+composer install
+
